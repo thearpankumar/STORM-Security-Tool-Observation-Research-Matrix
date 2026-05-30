@@ -88,7 +88,7 @@ flowchart LR
     end
 
     MAIN --> CLI_MODE{"Mode?"}
-    CLI_MODE -->|"TUI"| TUI["Textual UI"]
+    CLI_MODE -->|"Streamlit UI"| TUI["Streamlit Web App"]
     CLI_MODE -->|"CLI"| GRAPH
 
     GRAPH --> A1 & A2 & A3 & A4 & A5
@@ -140,16 +140,34 @@ cp .env.example .env
 | `DB_PATH` | SQLite database path | `data/agent.db` |
 | `EXCEL_OUTPUT_PATH` | Output Excel file | `output/cybersec_matrix.xlsx` |
 | `MAX_WORKERS` | Parallel subdomain pipelines | `3` |
+| `LOG_DIR` | Log directory | `logs/` |
+| `LOG_DISPLAY_LINES` | Lines to show in log panel | `100` |
 
 ## Usage
 
-### Interactive Mode (TUI)
+### Interactive Mode (Streamlit Web UI)
 
 ```bash
-python main.py --mode tui
-# or simply
 python main.py
+# or explicitly
+python main.py --mode streamlit
 ```
+
+The Streamlit web interface provides:
+- **Domain Explorer** - Navigate and manage cybersecurity domains/subdomains
+- **Active Pipelines** - Monitor running research pipelines in real-time
+- **Logs Panel** - View session logs with auto-refresh
+- **Documentation** - Built-in README viewer with interactive Mermaid diagrams
+
+#### Streamlit UI Features
+
+| Feature | Description |
+|---------|-------------|
+| Domain Tree | Collapsible treeview with checkboxes for bulk operations |
+| Detail Panel | Master-detail view for domains and subdomains |
+| Pipeline Progress | Live progress bars with stage indicators (M2-M5) |
+| Bulk Actions | Run, export, or clear multiple subdomains |
+| Documentation Modal | View README with rendered Mermaid diagrams |
 
 ### Discover Subdomains
 
